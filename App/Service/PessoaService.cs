@@ -24,5 +24,10 @@ namespace SistemaHospedagemHotel.App.Service
         {
             return PessoaRepository.All();
         }
+
+        public Pessoa FindByCpf(string cpf)
+        {
+            return PessoaRepository.FindByCpf(cpf);
+        }
     }
 }

@@ -9,7 +9,6 @@ namespace SistemaHospedagemHotel.App.Repository
     public class PessoaRepository
     {
         public List<Pessoa> Pessoas;
-
         public PessoaRepository()
         {
             Pessoas = new List<Pessoa>();
@@ -24,10 +23,21 @@ namespace SistemaHospedagemHotel.App.Repository
 
             return false;
         }
-
         public List<Pessoa> All()
         {
             return Pessoas;
+        }
+        public Pessoa FindByCpf(string cpf)
+        {
+            try
+            {
+                Pessoa pessoa = Pessoas.Find(pessoa => pessoa.Cpf == cpf);
+                return pessoa;
+            }
+            catch (System.Exception)
+            {
+                throw new Exception("Pessoa não encontrada");
+            }
         }
     }
 }

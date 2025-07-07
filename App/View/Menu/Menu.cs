@@ -13,6 +13,8 @@ namespace SistemaHospedagemHotel.App.View.Menu
     {
         public bool ExibeMenu = true;
         public PessoaController PessoaController;
+        public SuiteController SuiteController;
+        public ReservaController ReservaController;
 
         public Menu()
         {
@@ -22,7 +24,19 @@ namespace SistemaHospedagemHotel.App.View.Menu
 
         private void InjectionDependencies()
         {
-            PessoaController = new PessoaController(new PessoaService(new PessoaRepository()));
+            SuiteRepository suiteRepository = new SuiteRepository();
+            PessoaRepository pessoaRepository = new PessoaRepository();
+
+            PessoaController = new PessoaController(new PessoaService(pessoaRepository));
+            SuiteController = new SuiteController(new SuiteService(suiteRepository));
+            ReservaController = new ReservaController(
+                new ReservaService
+                    (
+                        new ReservaRepository(),
+                        new PessoaService(pessoaRepository),
+                        new SuiteService(suiteRepository)
+                    )
+                );
         }
 
 
@@ -43,11 +57,11 @@ namespace SistemaHospedagemHotel.App.View.Menu
                         break;
 
                     case 2:
-                        new SubMenuImplement(new Suite());
+                        new SubMenuImplement(new Suite(SuiteController));
                         break;
 
                     case 3:
-                        new SubMenuImplement(new Reserva());
+                        new SubMenuImplement(new Reserva(ReservaController));
                         break;
                     case 0:
                         Environment.Exit(0);
