@@ -8,8 +8,8 @@ namespace SistemaHospedagemHotel.App.Entity
 {
     public class Pessoa
     {
-        string Nome { get; }
-        string Cpf { get; }
+        public string Nome { get; }
+        public string Cpf { get; }
 
         public Pessoa(string nome, string cpf)
         {

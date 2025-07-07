@@ -8,9 +8,9 @@ namespace SistemaHospedagemHotel.App.Entity
     public class Suite
 
     {
-        string IdSuite { get; }
-        string Capacidade { get; }
-        string ValorDiaria { get; }
+        public string IdSuite { get; }
+        public string Capacidade { get; }
+        public string ValorDiaria { get; }
 
         public Suite(string idSuite, string capacidade, string valorDiaria)
         {
